@@ -1,0 +1,133 @@
+#:kivy 2.1.0
+<GoalsManager>:
+    # creating a vertical box to contain our design
+    MDBoxLayout:
+        orientation:'vertical'
+        MDBoxLayout:
+            # set the height to minimum as possible
+            adaptive_height:True
+            MDIconButton:
+                icon:'logout'
+                # set the icon color to be pp primary color
+                theme_text_color:'Custom'
+                icon_color:app.theme_cls.primary_color
+            MDBoxLayout
+            MDIconButton:
+                theme_text_color:'Custom'
+                icon_color:app.theme_cls.primary_color
+                icon:'plus-box'
+        MDBoxLayout:
+            adaptive_height:True
+            padding:'10dp',0
+            MDLabel:
+                adaptive_height:True
+                text:'Happy Shopping'
+                font_style:'H5'
+        # we used two boxes in the scroll viw to allow the cards to be with different heights
+        ScrollView:
+            bar_width:0
+            MDBoxLayout
+                spacing:'10dp'
+                padding:'10dp'
+                adaptive_height:True
+                MDBoxLayout:
+                    orientation:'vertical'
+                    spacing:'10dp'
+                    adaptive_height:True
+                    id:left_box
+                    pos_hint:{'top':1}
+                MDBoxLayout:
+                    orientation:'vertical'
+                    spacing:'10dp'
+                    pos_hint:{'top':1}
+                    adaptive_height:True
+                    id:right_box
+        # creating the bottom navigation bar
+        MDBoxLayout:
+            adaptive_height:True
+            padding:'2dp'
+            md_bg_color:app.theme_cls.bg_darkest
+            MDBoxLayout
+            MDBoxLayout:
+                orientation:'vertical'
+                adaptive_height:True
+                MDIconButton:
+                    icon:'home'
+                    pos_hint:{'center_x':.5}
+                    theme_text_color:'Custom'
+                    adaptive_height:True
+                    icon_color:app.theme_cls.primary_color
+                MDLabel:
+                    text:'Home'
+                    halign:'center'
+                    pos_hint:{'center_x':.5}
+                    theme_text_color:'Custom'
+                    adaptive_height:True
+                    text_color:app.theme_cls.primary_color
+            MDBoxLayout
+            MDBoxLayout:
+                orientation:'vertical'
+                adaptive_height:True
+                MDIconButton:
+                    icon:'qrcode'
+                    adaptive_height:True
+                    pos_hint:{'center_x':.5}
+                MDLabel:
+                    text:'Scan Here'
+                    halign:'center'
+                    adaptive_height:True
+                    pos_hint:{'center_x':.5}
+            MDBoxLayout
+
+
+<GoalCard>:
+    # set the height of this card to be minimum as possible
+    adaptive_height:True
+    # specify the border color
+    line_color:root.card_color
+    # specify the box radius
+    radius:[dp(25)]
+    # set the orientation to vertical
+    orientation:'vertical'
+
+    MDBoxLayout:
+        adaptive_size:True
+        # specify the padding for icon
+        padding:'10dp'
+        MDIconButton:
+            icon:root.goal_icon
+            adaptive_height:True
+            pos_hint:{'center_x':.9, "center_y": .1}
+            on_release: print("pressed")
+
+    MDLabel:
+        size_hint_y:None
+        height:'125dp'
+        canvas:
+            Color:
+                rgba:app.theme_cls.bg_darkest
+    #         Line:
+    #             # the circle line width
+    #             width:dp(10)
+    #             # specify the center to  be the same as the label center and the diameter will be the minimum value
+    #             # of label widget or height to get visible circle for all conditions minus the ine width
+    #             circle:(self.center_x,self.center_y,(min(self.width,self.height)/2)-dp(10),-90,90)
+    #         Color:
+    #             rgba:root.card_color
+    #         Line:
+    #             width:dp(10)
+    #             # determine the angles of the score canvas using root score value
+    #             circle:(self.center_x,self.center_y,(min(self.width,self.height)/2)-dp(10),-90,(180*root.score)-80)
+    #     #text:str(round(root.score*100,1))+' %'
+        halign:'center'
+        font_style:'H5'
+    MDBoxLayout:
+        adaptive_height:True
+        orientation:'vertical'
+        padding:'10dp'
+        MDLabel:
+            text:root.goal_title
+            adaptive_height:True   
+    
+        #    text:str(root.items_num)+' items' if  root.items_num!=1 else str(root.items_num)+'item'
+        #    font_style:'Subtitle2' 
