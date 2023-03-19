@@ -1,0 +1,794 @@
+#:kivy 2.1.0
+
+WindowManager:
+    MainScreen:
+    LoginScreen:
+    SignupScreen:
+    AccountScreen:
+    QrCodeScreen:
+    InvoiceScreen:
+    ToDoCard:
+
+<MainScreen>:
+    name: "main"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        
+        Image:
+            source: "assets/online-shopping.png"
+            size_hint: .3, .3
+            pos_hint: {"center_x": .5, "center_y": .65}
+
+        MDLabel:
+            text: "H E L L O !"
+            font_name: "Roboto"
+            font_style: "Subtitle1"
+            pos_hint: {"center_x": .89, "center_y": .5}
+            color: rgba(34, 34, 34, 255)
+
+        MDLabel:
+            text: "Best place to have an amazing and\n fast offline shopping experience!"
+            font_name: "Roboto"
+            pos_hint: {"center_x": .5, "center_y": .4}
+            font_size: "12sp"
+            halign: "center"
+            color: rgba(127, 127, 127, 255)
+
+        Button:
+            text: "LOGIN"
+            size_hint: .5, .065
+            pos_hint: {"center_x": .5, "center_y": .28}
+            background_color: 0, 0, 0, 0
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login" 
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+        
+        Button:
+            text: "SIGNUP"
+            text_color: 52, 0, 231, 255
+            size_hint: .5, .065
+            pos_hint: {"center_x": .5, "center_y": .19}
+            background_color: 0, 0, 0, 0
+            font_name: "Roboto"
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup" 
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                Line:
+                    width: 1.1
+                    rounded_rectangle: self.x, self.y, self.width, self.height, 5, 5, 5, 5, 100
+
+<LoginScreen>:
+    name: "login"
+    
+    email: email
+    password: password
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "W E L C O M E !"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: rgba(0, 0, 59, 255)
+
+        MDLabel:
+            text: "Sign in to continue"
+            font_name: "Roboto"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color: rgba(135, 133, 193, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .63}
+            
+            TextInput:
+                id: email
+                hint_text: "Email"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .5}
+            
+            TextInput:
+                id: password
+                hint_text: "Password"
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        Button:
+            text: "LOGIN"
+            size_hint: .5, .065
+            pos_hint: {"center_x": .5, "center_y": .34}
+            background_color: 0, 0, 0, 0
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.loginButton()
+                
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        MDTextButton:
+            text: "Forgot Password?"
+            pos_hint: {"center_x": .5, "center_y": .28}
+            color: rgba(68, 78, 132, 255)
+            font_size: "12sp"
+            font_name: "Roboto"
+
+        MDLabel:
+            text: "or"
+            color: rgba(52, 0, 231, 255)
+            pos_hint:{"center_y": .22}
+            font_size: "13sp"
+            font_name: "Roboto"
+            halign: "center"
+        
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: .3, .002
+            pos_hint: {"center_x": .3, "center_y": .216}
+        
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: .3, .002
+            pos_hint: {"center_x": .7, "center_y": .216}
+
+        MDLabel:
+            text: "Social Media Login"
+            font_name: "Roboto"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_y": .16}
+            color: rgba(135, 133, 193, 255)
+
+        MDGridLayout:
+            cols: 1
+            size_hint: .48, .07
+            pos_hint: {"center_x": .5, "center_y": .1}
+            Image:
+                source: "assets/google.png"
+
+        MDLabel:
+            text: "Don't have an account?"
+            font_name: "Roboto"
+            font_size: "11sp"
+            pos_hint: {"center_x": .74, "center_y": .04}
+            color: rgba(135, 133, 193, 255)
+
+        MDTextButton:
+            text: "Sign up"
+            font_name: "Roboto"
+            font_size: "11sp"
+            pos_hint: {"center_x": .68, "center_y": .04}
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "signup"
+
+<SignupScreen>:
+    name: "signup"
+    nm: nm
+    username: username
+    email: email
+    password: passw
+
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "main"
+
+        MDLabel:
+            text: "H i !"
+            font_name: "Roboto"
+            font_size: "23sp"
+            pos_hint: {"center_x": .6, "center_y": .85}
+            color: rgba(0, 0, 59, 255)
+
+        MDLabel:
+            text: "Create a new account"
+            font_name: "Roboto"
+            pos_hint: {"center_x": .6, "center_y": .79}
+            color: rgba(135, 133, 193, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .72}
+            
+            TextInput:
+                hint_text: "Name"
+                id: nm
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+        
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .62}
+            
+            TextInput:
+                hint_text: "Username"
+                id: username
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .52}
+            
+            TextInput:
+                hint_text: "Email"
+                id: email
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        MDFloatLayout:
+            size_hint: .7, .07
+            pos_hint: {"center_x": .5, "center_y": .42}
+            
+            TextInput:
+                hint_text: "Password"
+                id: passw
+                font_name: "Roboto"
+                size_hint_y: .75
+                pos_hint: {"center_x": .43, "center_y": .5}
+                background_color: 1, 1, 1, 0
+                foreground_color: rgba(0, 0, 59, 255)
+                cursor_color: rgba(0, 0, 59, 255)
+                font_size: "14sp"
+                cursor_width: "2sp"
+                multiline: False
+                password: True
+            
+            MDFloatLayout:
+                pos_hint: {"center_x": .44, "center_y": 0.23}
+                size_hint_y: .03
+                md_bg_color: rgba(178, 178, 178, 255)
+
+        Button:
+            text: "SIGNUP"
+            size_hint: .5, .065
+            pos_hint: {"center_x": .5, "center_y": .3}
+            background_color: 0, 0, 0, 0
+            font_name: "Roboto"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit() 
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [5]
+
+        MDLabel:
+            text: "or"
+            color: rgba(52, 0, 231, 255)
+            pos_hint:{"center_y": .22}
+            font_size: "13sp"
+            font_name: "Roboto"
+            halign: "center"
+        
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: .3, .002
+            pos_hint: {"center_x": .3, "center_y": .216}
+        
+        MDFloatLayout:
+            md_bg_color: rgba(178, 178, 178, 255)
+            size_hint: .3, .002
+            pos_hint: {"center_x": .7, "center_y": .216}
+
+        MDLabel:
+            text: "Social Media Login"
+            font_name: "Roboto"
+            font_size: "13sp"
+            halign: "center"
+            pos_hint: {"center_y": .16}
+            color: rgba(135, 133, 193, 255)
+
+        MDGridLayout:
+            cols: 1
+            size_hint: .48, .07
+            pos_hint: {"center_x": .5, "center_y": .1}
+            Image:
+                source: "assets/google.png"
+
+        MDLabel:
+            text: "Already have an account?"
+            font_name: "Roboto"
+            font_size: "11sp"
+            pos_hint: {"center_x": .74, "center_y": .04}
+            color: rgba(135, 133, 193, 255)
+
+        MDTextButton:
+            text: "Log in"
+            font_name: "Roboto"
+            font_size: "11sp"
+            pos_hint: {"center_x": .7, "center_y": .04}
+            color: rgba(52, 0, 231, 255)
+            on_release:
+                root.manager.transition.direction = "left"
+                root.manager.current = "login"
+
+<Content>:
+    ScrollView:
+        MDList:
+            OneLineListItem:
+                text: "Screen 1"
+                on_release:
+                    root.nav_drawer.set_state("close") 
+                    root.manager.current = "screen1"
+            OneLineListItem:
+                text: "Screen 2"
+                on_release: 
+                    root.nav_drawer.set_state("close") 
+                    root.manager.current = "screen2"
+
+<AccountScreen>:
+    name: "account"
+    cart: cart
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        id: cart
+    
+        MDScreen:
+            MDTopAppBar:
+                pos_hint: {"top": 1}
+                title: "Navigation Drawer"
+                left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                icon_color: 0, 1, 0, 1
+
+            MDNavigationDrawer:
+                id: nav_drawer
+                Content:
+                    manager: screen_manager
+                    nav_drawer: nav_drawer
+
+            MDNavigationLayout:
+                ScreenManager:
+                    id: screen_manager
+                    MDScreen:
+                        name: "screen1"
+                        
+                        MDFloatLayout:
+                            md_bg_color: 1, 1, 1, 0
+
+                            Button:
+                                text: "Wishlist"
+                                pos_hint: {"center_x": .25, "center_y": .25}
+                                size_hint: .4, .4
+                                background_color: 0, 0, 0, 0
+                                font_name: "Roboto"
+                                    
+                                canvas.before:
+                                    Color:
+                                        rgb: rgba(52, 0, 231, 255)
+                                    RoundedRectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                        radius: [20]
+                                on_release: root.manager.current = "mainlist"
+                            
+                            Button:
+                                text: "Scan a product"
+                                pos_hint: {"center_x": .25, "center_y": .67}
+                                size_hint: .4, .4
+                                background_color: 0, 0, 0, 0
+                                font_name: "Roboto"
+                                    
+                                canvas.before:
+                                    Color:
+                                        rgb: rgba(52, 0, 231, 255)
+                                    RoundedRectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                        radius: [20]
+                                on_release:
+                                    root.manager.transition.direction = "left"
+                                    root.manager.current = "qr"
+                                
+
+                            Image:
+                                source: "assets/qr-code-scan.png"
+                                pos_hint: {"center_x": .77, "center_y": .1}
+                                size_hint: .05, .05
+
+                            Button:
+                                text: "Show cart"
+                                pos_hint: {"center_x": .75, "center_y": .67}
+                                size_hint: .4, .4
+                                background_color: 0, 0, 0, 0
+                                font_name: "Roboto"
+                                canvas.before:
+                                    Color:
+                                        rgb: rgba(52, 0, 231, 255)
+                                    RoundedRectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                        radius: [20]
+                                on_release:
+                                    root.show()
+                                    root.total()
+                                    root.manager.current = "invoice"
+
+                            Button:
+                                text: "About Us"
+                                pos_hint: {"center_x": .75, "center_y": .25}
+                                size_hint: .4, .4
+                                background_color: 0, 0, 0, 0
+                                font_name: "Roboto"
+                                canvas.before:
+                                    Color:
+                                        rgb: rgba(52, 0, 231, 255)
+                                    RoundedRectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                        radius: [20]
+
+
+                    
+                    MDScreen:
+                        name: "screen2"
+                        MDLabel:
+                            text: "This is screen 2"
+                            halign: "center"
+
+<QrCodeScreen>:
+    name: "qr"
+    txt: txt
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 0
+
+        ZBarCam:
+            id:qrcodecam
+        Label:
+            id: txt
+            size_hint:None,None
+            size:self.texture_size[0],50
+            text:' '.join([str(symbol.data)for symbol in qrcodecam.symbols])
+        Button:
+            id: add
+            text: "Add to cart"
+            background_color: rgba(0, 0, 0, 0.5)
+            size_hint: None, None
+            size: self.texture_size[0], 50
+            pos_hint: {"center_x": .9, "center_y": .05}
+            canvas.before:
+                Color:
+                    rgb: rgba(52, 0, 231, 255)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [5]
+            on_release:
+                root.addToCart()
+
+
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "account"
+
+# <ToDoCard>:
+#     name: "todo"
+#     date:date
+#     todo_list:todo_list
+#     MDFloatLayout:
+#         md_bg_color: 1, 1, 1, 1
+#         MDLabel:
+#             text:"Invoice"
+#             pos_hint:{"center_x":.56,"center_y":.95}
+#             font_name:"Poppins-SemiBold.ttf"
+#             font_size:"25sp"
+#         MDLabel:
+#             id:date
+#             text:""
+#             pos_hint:{"center_x":.565,"center_y":.89}
+#             font_name:"Poppins-Regular.ttf"
+#             font_size:"12sp"
+#         MDIconButton:
+#             icon:"check"
+#             pos_hint:{"center_x":.89,"center_y":.06}
+#             user_font_size:"10sp"
+#             md_bg_color:1,170/255,23/255,1
+#             theme_text_color:"Custom"
+#             text_color:1,1,1,1
+#             on_release:
+#                 root.manager.transition.direction="left"
+#                 root.manager.current="add_todo"
+#         ScrollView:
+#             do_scroll_y:True
+#             do_scroll_x:True
+#             size_hint_y:.85
+#             pos_hint:{"center_x":.5,"y":0}
+#             bar_width:0
+#             GridLayout:
+#                 id:todo_list
+#                 cols:1
+#                 height:self.minimum_height
+#                 row_default_height:80
+#                 size_hint_y:None
+#                 padding:15,10
+#                 spacing:15,10
+                    
+<InvoiceScreen>:
+    name: "invoice"
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+        MDIconButton:
+            icon: "arrow-left"
+            pos_hint: {"center_y": .95}
+            user_font_size: "30sp"
+            theme_text_color: "Custom"
+            text_color: rgba(26, 24, 58, 255)
+            on_release:
+                root.manager.transition.direction = "right"
+                root.manager.current = "account"
+
+<ToDoCard>:
+    name: "mainlist"
+    date: date
+    todo_list: todo_list
+    
+    MDFloatLayout:
+        elevation:10
+        md_bg_color:1,1,1,1
+        radius:[8]
+        
+        
+        MDFloatLayout:
+            id:bar
+            size_hint:.01,.9
+            pos_hint:{"center_x":.02,"center_y":.5}
+            md_bg_color:1,170/255,23/255,1
+        MDLabel:
+            text:root.title
+            markup:True
+            font_name:"Poppins-SemiBold.ttf"
+            font_size:"20sp"
+            size_hint_x:.8
+            pos_hint:{"center_x":.44,"center_y":.77}
+        MDCheckbox:
+            size_hunt:None,None
+            size:"48dp","48dp"
+            unselected_color:1,170/255,23/255,1
+            selected_color:0,179/255,0,1
+            pos_hint:{"center_x":.95,"center_y":.5}
+            on_active:app.on_complete(*args,description,bar)
+        MDLabel:
+            id:description
+            text:root.description
+            font_name:"Poppins-Regular.ttf"
+            markup:True
+            size_hunt_x:.9
+            line_height:.8
+            pos_hint:{"center_x":.539,"center_y":.4}
+        MDFloatLayout:
+            md_bg_color:1,1,1,1
+            MDLabel:
+                text:"My Wishlist"
+                pos_hint:{"center_x":.56,"center_y":.95}
+                font_name:"Poppins-SemiBold.ttf"
+                font_size:"35sp"
+            MDLabel:
+                id:date
+                text:""
+                pos_hint:{"center_x":.565,"center_y":.89}
+                font_name:"Poppins-Regular.ttf"
+                font_size:"15sp"
+            MDIconButton:
+                icon:"plus"
+                pos_hint:{"center_x":.89,"center_y":.925}
+                user_font_size:"30sp"
+                md_bg_color:1,170/255,23/255,1
+                theme_text_color:"Custom"
+                text_color:1,1,1,1
+                on_release:
+                    root.manager.transition.direction="left"
+                    root.manager.current="add_todo"
+            ScrollView:
+                do_scroll_y:True
+                do_scroll_x:True
+                size_hint_y:.85
+                pos_hint:{"center_x":.5,"y":0}
+                bar_width:0
+                GridLayout:
+                    id:todo_list
+                    cols:1
+                    height:self.minimum_height
+                    row_default_height:80
+                    size_hint_y:None
+                    padding:15,10
+                    spacing:15,10         
+
+    MDScreen:
+        name: "add_todo"
+        title: title
+        description:description
+        MDFloatLayout:
+            md_bg_color:1,1,1,1
+            MDIconButton:
+                icon:"chevron-left"
+                user_font_size:"40sp"
+                pos_hint:{"center_x":.95}
+                theme_text_color:"Custom"
+                text_color:1,170/255,23/255,1
+                on_release:
+                    root.manager.transition.direction="right"
+                    root.manager.current="account"
+            MDLabel:
+                text:"Add Item"
+                pos_hint:{"center_x":.6,"center_y":.88}
+                font_name:"Poppins-SemiBold.ttf"
+                font_size:"35sp"
+            MDFloatLayout:
+                size_hint:.85,.08
+                pos_hint:{"center_x":.5,"center_y":.78}
+                canvas:
+                    Color:
+                        rgb:(238/255,238/255,238/255,1)
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+                TextInput:
+                    id:title
+                    hint_text:"Item"
+                    size_hint:1,None
+                    pos_hint:{"center_x":.5,"center_y":.5}
+                    height:self.minimum_height
+                    multiline: False
+                    cursor_color:1,170/255,23/255,1
+                    cursor_width:"2sp"
+                    foreground_color:1,170/255,23/255,1
+                    background_color:0,0,0,0
+                    padding:15
+                    font_name:"Poppins-Regular.ttf"
+                    font_size:"18sp"
+            MDFloatLayout:
+                size_hint:.85,.28
+                pos_hint:{"center_x":.5,"center_y":.57}
+                canvas:
+                    Color:
+                        rgb:(238/255,238/255,238/255,1)
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+                TextInput:
+                    id:description
+                    hint_text:"Description"
+                    size_hint:1,None
+                    pos_hint:{"center_x":.5,"center_y":.5}
+                    height:180
+                    cursor_color:1,170/255,23/255,1
+                    cursor_width:"2sp"
+                    foreground_color:1,170/255,23/255,1
+                    background_color:0,0,0,0
+                    padding:15
+                    font_name:"Poppins-Regular.ttf"
+                    font_size:"18sp"
+                
+            Button:
+                text:"ADD ITEM"
+                size_hint:.45,.08
+                pos_hint:{"center_x":.5,"center_y":.36}
+                background_color:0,0,0,0
+                font_name:"Poppins-SemiBold.ttf"
+                font_size:"18sp"
+                color:1,1,1,1
+                on_release:
+                    root.add_todo(title.text,description.text)
+                canvas.before:
+                    Color:
+                        rgb:(1,170/255,23/255,1)
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+
+    
